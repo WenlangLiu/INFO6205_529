@@ -6,13 +6,12 @@
 package TSP;
 
 import java.util.ArrayList;
-
 /**
- *
- * @author abdusamed
- */
+*
+* @author Wenlang
+*/
 public class CityManager {
-    // Holds all the cities
+
     private static ArrayList<City> cityManger = new ArrayList<>();
     
     public CityManager(){
