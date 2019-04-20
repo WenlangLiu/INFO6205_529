@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TSP;
+package tsp.main;
 
 import java.util.ArrayList;
-/**
-*
-* @author Wenlang
-*/
-public class CityManager {
 
+/**
+ *
+ * @author Wenlang
+ */
+public class CityManager {
+	
     private static ArrayList<City> cityManger = new ArrayList<>();
     
     public CityManager(){

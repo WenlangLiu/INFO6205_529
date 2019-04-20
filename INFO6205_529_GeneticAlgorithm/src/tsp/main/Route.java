@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TSP;
+package tsp.main;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,38 +12,40 @@ import java.util.Comparator;
 
 /**
  *
- * @author Wenlang
+ * @author Qifeng
  */
 public class Route {
 	private ArrayList<City> route;
 	double fittness = 0.0; // each route begins with 0 fitness
-	
-	
-	public Route(boolean initalize) { // Route pre filled with cities?
+
+	public Route(boolean initalize) {
 		if (initalize) {
 			route = new ArrayList<>();
 			for (int i = 0; i < CityManager.getCityManger().size(); i++) {
 				route.add(CityManager.getCityManger().get(i)); // Populate the route City objects
 			}
 		} else {
-			route = new ArrayList<>();
+			route = new ArrayList<>(CityManager.getCityManger().size());
 			for (int i = 0; i < CityManager.getCityManger().size(); i++) {
 				route.add(null);
 			}
 		}
 	}
-
+	
+	/**
+	 * Calculate the entire distance if TS goes to each city and return it which is it's fitness value
+	 * @return
+	 */
 	public double getDistance() {
-		
-		
+
 		double sum = 0.0;
-		
+
 		for (int i = 0; i < route.size(); i++) {
 			if (route.get(i) == null)
 				break;
 			if (i + 1 >= route.size()) { // Check if reached the last element in the array
 				break;
-			} else if(route.get(i)!=null&&route.get(i+1)!=null){ // Elucidian distance between two cities
+			} else { // Elucidian distance between two cities
 				int x1 = route.get(i).getX();
 				int x2 = route.get(i + 1).getX();
 				int y1 = route.get(i).getY();
@@ -54,22 +56,15 @@ public class Route {
 		}
 		return sum;
 	}
+	
 
 	public void generateIndividualRoute() {
-		// Assuming route is filled with cities -> simple shuffle to create an
-		// individual
 		Collections.shuffle(route);
-		this.fittness = getDistance(); // inverse could work
-	}
-
-	
-	
-	public void setRoute(ArrayList<City> route) {
-		this.route = route;
+		this.fittness = getDistance();
 	}
 
 	public void sortRoute() {
-		Collections.sort(route); // Hope it works ... used Comparable
+		Collections.sort(route);
 	}
 
 	public int getSize() {
@@ -78,11 +73,11 @@ public class Route {
 
 	// Setters & Getters
 	public double getFittness() {
-		return getDistance();
+		return fittness;
 	}
 
-	public void setFittness(double fittness) {
-		this.fittness = fittness;
+	public void setFittness() {
+		this.fittness = getDistance();
 	}
 
 	public ArrayList<City> getRoute() {
@@ -91,17 +86,16 @@ public class Route {
 
 	public void show() {
 		if (route.get(0) == null) {
-			System.out.println("No city to show");;
+			System.out.println("No city to show");
+			;
 		} else {
 			System.out.print("{");
 			for (City city : route) {
-				if(city==null) continue;
 				System.out.print(city.getIndex() + ",");
 			}
 			System.out.print("}");
-			System.out.println("");
-
+			// System.out.println("");
 		}
 	}
-
+	
 }

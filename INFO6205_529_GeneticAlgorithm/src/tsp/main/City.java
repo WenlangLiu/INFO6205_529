@@ -1,11 +1,16 @@
-package TSP;
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tsp.main;
 
 import java.util.Comparator;
 
 /**
  *
  * @author Wenlang
+ * 
  */
 public class City implements Comparable<City> {
 	private static int count = 0;
@@ -15,7 +20,7 @@ public class City implements Comparable<City> {
 	private int y;
 
 	public City(String name, int x, int y) {
-		index = count++; // Counter to increment for each initialization of City
+		index = count++; 
 		this.name = name;
 		this.x = x;
 		this.y = y;
